@@ -36,7 +36,6 @@ jobs:
           cp -r public deploy/
           cp package.json deploy/
           cp yarn.lock deploy/
-          cp -r node_modules deploy/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
