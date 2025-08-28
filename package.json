@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8080",
     "lint": "next lint",
-	"export": "next build && next export"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
