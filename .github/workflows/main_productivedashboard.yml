@@ -11,13 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout source code
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2. Upload the repo as artifact (full source, not just .next)
-      - name: Upload artifact for deployment
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: next-app
           path: .
@@ -27,18 +23,14 @@ jobs:
     needs: build-and-deploy
 
     steps:
-      # 3. Download the artifact (the full repo)
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: next-app
           path: .
 
-      # 4. Deploy to Azure Web App
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
+      - uses: azure/webapps-deploy@v3
         with:
-          app-name: 'ProductiveDashboard' # <-- your App Service name
+          app-name: 'ProductiveDashboard'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CB85F5848C5844B3944AB3B835121C45 }}
