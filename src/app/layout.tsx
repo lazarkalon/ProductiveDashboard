@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Nav from './nav'
 import { ProductiveAuth } from '../lib/Productive'
+import AuthWrapper from '../components/AuthWrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,10 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full bg-gray-50 dark:bg-black">
       <body className={inter.className}>
-        <Suspense>
-          <Nav />
-        </Suspense>
-        {children}
+        <AuthWrapper>
+          <Suspense>
+            <Nav /> 
+          </Suspense>
+          {children}
+        </AuthWrapper>
+
         <ProductiveAuth />
       </body>
     </html>

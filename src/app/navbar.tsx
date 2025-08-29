@@ -1,4 +1,3 @@
-// navbar.tsx
 'use client'
 
 import Link from 'next/link'
@@ -7,6 +6,7 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { routeConfig } from '@/config'
 import Image from 'next/image'
+import LogoutButton from '@/components/LogoutButton'   // ✅ use our component
 
 const leftNavigation = [
   { name: 'Sprint Management', href: routeConfig.SPRINT_DASHBOARD },
@@ -71,8 +71,8 @@ export default function Navbar() {
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
                 <div className="hidden h-full sm:-my-px sm:flex sm:space-x-8">
                   {rightNavigation.map(renderDesktopNavigationItem)}
+                  <LogoutButton />
                 </div>
-                <div className="ml-4 relative top-0.5">{/* extra slot */}</div>
               </div>
 
               {/* Mobile Menu Trigger */}
@@ -108,6 +108,14 @@ export default function Navbar() {
                   {item.name}
                 </Disclosure.Button>
               ))}
+
+              {/* ✅ Mobile logout button */}
+              <Disclosure.Button
+                as="div"
+                className="pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800"
+              >
+                <LogoutButton />
+              </Disclosure.Button>
             </div>
           </Disclosure.Panel>
         </>
